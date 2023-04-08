@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+  <title>Generador de Firmas para Correo</title>
+</head>
+
+<body class="d-flex justify-content-center min-vh-100">
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <section class="container-fluid">
+      <h1 class="text-center">Generador de Firmas</h1>
+      <p class="text-justify lead" style="width: 550px;">Ingrese los datos del formulario, al presionar sobre el botón
+        para Guardar, la firma se descargará en formato imagen (PNG), la cual podrá ser incrustada en su gestor de
+        correo de preferencia:</p>
+      <div class="form-group">
+        <label for="nombreIn">Nombre y Apellido:</label>
+        <input type="text" autocomplete="off" class="form-control" id="nombreIn">
+      </div>
+      <div class="form-group">
+        <label for="sectorIn">Nombre de la Empresa y/o Sector:</label>
+        <input type="text" autocomplete="off" class="form-control" id="sectorIn">
+      </div>
+      <div class="form-group">
+        <label for="dirIn">Dirección:</label>
+        <input type="text" autocomplete="off" class="form-control" id="dirIn">
+      </div>
+      <div class="form-group">
+        <label for="telIn">Teléfono y/o Interno:</label>
+        <input type="text" autocomplete="off" class="form-control" id="telIn">
+      </div>
+    </section>
+    <section class="firmaBox">
+      <table style="table-layout: fixed; width: 200px" id="firmaCaptura">
+        <colgroup>
+          <col style="width: 150px;">
+          <col style="width: 400px">
+        </colgroup>
+        <thead style="font-size: 14px;">
+          <tr>
+            <td rowspan="4" class="logoBox"><img src="logo_empresa.png" width="70%"></td>
+            <td id="nombreOut" style="font-weight: bold;">Nombre y Apellido</td>
+          </tr>
+          <tr>
+            <td id="sectorOut">Empresa o Sector</td>
+          </tr>
+          <tr>
+            <td id="dirOut">Dirección (CP). Localidad - Provincia.</td>
+          </tr>
+          <tr>
+            <td id="telOut">(Caract) Número de Tel + Interno</td>
+          </tr>
+        </thead>
+      </table>
+    </section>
+    <div class="botonBox">
+      <button id="btnCapturar" class="btn btn-success">Guardar firma</button>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+  </script>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+    integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="scripts.js"></script>
+</body>
+
+</html>
