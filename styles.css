@@ -8,14 +8,11 @@ h1 {
 
 .txtIntro {
     width: 550px;
+    text-align: justify;
 }
 
 p {
     margin-bottom: 1.5rem !important;
-}
-
-.colLogo {
-    width: width 150px;
 }
 
 .logoBox {
@@ -24,10 +21,6 @@ p {
 
 .logoBox img {
     vertical-align: middle;
-}
-
-.colFirma {
-    width: 400px;
 }
 
 .firmaBox {
