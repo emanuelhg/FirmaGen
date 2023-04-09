@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
@@ -18,8 +18,8 @@
 <body class="d-flex justify-content-center min-vh-100">
   <div class="d-flex flex-column justify-content-center align-items-center">
     <section class="container-fluid">
-      <h1 class="text-center text-success">Generador de Firmas</h1>
-      <p class="text-justify lead" style="width: 550px;">Ingrese los datos del formulario, al presionar sobre el botón
+      <h1 class="text-center">Generador de Firmas</h1>
+      <p class="text-justify lead txtIntro">Ingrese los datos del formulario, al presionar sobre el botón
         para Guardar, la firma se descargará en formato imagen (PNG), la cual podrá ser incrustada en su gestor de
         correo de preferencia:</p>
       <div class="form-group">
@@ -42,8 +42,8 @@
     <section class="firmaBox">
       <table style="table-layout: fixed; width: 200px" id="firmaCaptura">
         <colgroup>
-          <col style="width: 150px;">
-          <col style="width: 400px">
+          <col class="colLogo" style="width: 150px;">
+          <col class="colFirma" style="width: 400px;">
         </colgroup>
         <thead style="font-size: 14px;">
           <tr>

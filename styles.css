@@ -6,9 +6,18 @@ h1 {
     margin-bottom: 1.5rem !important;
 }
 
+.txtIntro {
+    width: 550px;
+}
+
 p {
     margin-bottom: 1.5rem !important;
 }
+
+.colLogo {
+    width: width 150px;
+}
+
 .logoBox {
     text-align: center;
 }
@@ -17,10 +26,43 @@ p {
     vertical-align: middle;
 }
 
+.colFirma {
+    width: 400px;
+}
+
 .firmaBox {
     margin-top: 25px;
 }
 
 .botonBox {
     margin-top: 25px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 550px) {
+
+    .txtIntro {
+        width: 376px !important;
+        text-align: center;
+    }
+
+    .colFirma {
+        width: 250px !important;
+    }
+
+}
+
+@media (max-width: 385px) {
+
+    .txtIntro {
+        width: 330px !important;
+        text-align: center;
+    }
+
+    .colFirma {
+        width: 200px !important;
+    }
+
 }
