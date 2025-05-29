@@ -38,6 +38,14 @@
         <label for="telIn">Teléfono y/o Interno:</label>
         <input type="text" autocomplete="off" class="form-control" id="telIn">
       </div>
+      <div class="form-group">
+        <label for="emailIn">Email:</label>
+        <input type="email" autocomplete="off" class="form-control" id="emailIn">
+      </div>
+      <div class="form-group">
+        <label for="logoIn">Logo personalizado:</label>
+        <input type="file" accept="image/*" class="form-control" id="logoIn">
+      </div>
     </section>
     <section class="firmaBox">
       <table style="table-layout: fixed; width: 200px" id="firmaCaptura">
@@ -45,21 +53,29 @@
           <col class="colLogo" style="width: 150px;">
           <col class="colFirma" style="width: 400px;">
         </colgroup>
-        <thead style="font-size: 14px;">
+        <thead>
           <tr>
-            <td rowspan="4" class="logoBox"><img src="logo_empresa.png" width="70%" alt="Logo Empresa"></td>
+            <th colspan="2" style="display:none"></th>
+          </tr>
+        </thead>
+        <tbody style="font-size: 14px;">
+          <tr>
+            <td rowspan="6" class="logoBox"><img id="logoFirma" src="logo_empresa.png" width="70%" alt="Logo Empresa"></td>
             <td id="nombreOut" style="font-weight: bold;">Nombre y Apellido</td>
           </tr>
           <tr>
             <td id="sectorOut">Empresa o Sector</td>
           </tr>
           <tr>
-            <td id="dirOut">Dirección (CP). Localidad - Provincia.</td>
+            <td id="dirOut"><span class="icono-dir" style="margin-right:5px;vertical-align:middle;"></span><span id="dirText">Dirección (CP). Localidad - Provincia.</span></td>
           </tr>
           <tr>
-            <td id="telOut">(Caract) Número de Tel + Interno</td>
+            <td id="telOut"><span class="icono-tel" style="margin-right:5px;vertical-align:middle;">📞</span><span id="telText">(Caract) Número de Tel + Interno</span></td>
           </tr>
-        </thead>
+          <tr>
+            <td id="emailOut"><span class="icono-mail" style="margin-right:5px;vertical-align:middle;">✉️</span><span id="emailText">correo@ejemplo.com</span></td>
+          </tr>
+        </tbody>
       </table>
     </section>
     <div class="botonBox">
