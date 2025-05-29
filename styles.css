@@ -29,6 +29,10 @@ p {
     margin: 0 auto;
 }
 
+.form-group {
+    margin-top: 10px;;
+}
+
 .firmaBox {
     margin-top: 25px;
 }
