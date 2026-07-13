@@ -44,29 +44,8 @@
         </div>
         <fieldset class="personalizacion">
           <legend>Personalización</legend>
-          <p class="campoLabel">Color de la firma:</p>
-          <div class="paletas">
-            <label class="paleta">
-              <input type="radio" name="paleta" value="#0f766e" checked>
-              <span class="muestraColor" style="--color-paleta: #0f766e"></span>
-              Verde
-            </label>
-            <label class="paleta">
-              <input type="radio" name="paleta" value="#1d4ed8">
-              <span class="muestraColor" style="--color-paleta: #1d4ed8"></span>
-              Azul
-            </label>
-            <label class="paleta">
-              <input type="radio" name="paleta" value="#475569">
-              <span class="muestraColor" style="--color-paleta: #475569"></span>
-              Gris
-            </label>
-            <label class="paleta">
-              <input type="radio" name="paleta" value="#9f1239">
-              <span class="muestraColor" style="--color-paleta: #9f1239"></span>
-              Bordó
-            </label>
-          </div>
+          <label class="campoLabel" for="colorFirma">Color de la firma:</label>
+          <input class="colorPicker" type="color" id="colorFirma" value="#0f766e">
           <p class="campoLabel elementosLabel">Elementos visibles:</p>
           <div class="visibilidadGrid">
             <label class="opcionVisible"><input type="checkbox" id="mostrarLogo" checked> Logo</label>
@@ -145,7 +124,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
     integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="scripts.js?v=20260713-6"></script>
+  <script src="scripts.js?v=20260713-7"></script>
 </body>
 
 </html>

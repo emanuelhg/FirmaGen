@@ -22,7 +22,7 @@ Una vez ingresados los datos, se puede:
 - Se agregó validación de tipo y tamaño para logos personalizados.
 - Se mejoró la adaptación a pantallas pequeñas y la accesibilidad del formulario.
 - Se eliminaron Bootstrap, jQuery y la copia obsoleta de html2canvas.
-- Se agregaron cuatro paletas de color y enlaces opcionales con iconos para sitio web, LinkedIn, Instagram y WhatsApp. Para LinkedIn e Instagram alcanza con ingresar el usuario; la URL se genera automáticamente.
+- Se agregó un selector de color y enlaces opcionales con iconos para sitio web, LinkedIn, Instagram y WhatsApp. Para LinkedIn e Instagram alcanza con ingresar el usuario; la URL se genera automáticamente.
 - Se puede elegir si la firma muestra logo, empresa o sector, dirección, teléfono y email.
 
 Los enlaces de contacto y redes sociales son clicables únicamente en la firma copiada como HTML. En el archivo PNG se muestran sólo como elementos visuales.

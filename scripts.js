@@ -171,10 +171,8 @@ document
 actualizarRedes();
 actualizarVisibilidad();
 
-document.querySelectorAll('input[name="paleta"]').forEach((opcion) => {
-  opcion.addEventListener("change", () => {
-    firma.style.setProperty("--acento-firma", opcion.value);
-  });
+document.querySelector("#colorFirma").addEventListener("input", (evento) => {
+  firma.style.setProperty("--acento-firma", evento.target.value);
 });
 
 function leerComoDataUrl(archivo) {
