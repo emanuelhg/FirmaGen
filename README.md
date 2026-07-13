@@ -2,13 +2,16 @@
 
 **Demo:** [https://emanuelhg.github.io/FirmaGen/](https://emanuelhg.github.io/FirmaGen/)
 
-El código se encuentra realizado con **HTML**, **CSS** y **JavaScript**. Es una página web que ofrece la funcionalidad de generar una firma para correo electrónico personalizada a partir de los datos que se ingresan en un formulario para luego volcarse en un archivo de imagen.
+El código está realizado con **HTML**, **CSS** y **JavaScript nativo**. Es una página web que permite generar una firma personalizada para correo electrónico a partir de los datos ingresados en un formulario.
 
-Se hace uso de **Bootstrap** para el diseño y de la librería **html2canvas** para la generación de la imagen de la firma.
+Se utiliza la librería **html2canvas** para generar la imagen de la firma. El proyecto no requiere instalación, proceso de compilación ni otras dependencias.
 
-El código JavaScript se encarga de manejar las acciones y eventos que ocurren. Concretamente, se encarga de actualizar la vista previa de la firma en tiempo real mientras se van ingresando los datos en el formulario. Para ello, se registran los eventos de input en cada uno de los campos del formulario y se actualiza la vista previa con los datos ingresados.
+El código JavaScript actualiza la vista previa en tiempo real, valida el logo personalizado y gestiona la descarga o copia de la firma.
 
-Una vez que se han ingresado todos los datos, se hace clic en el botón "Guardar firma" y se utiliza la librería html2canvas para capturar la vista previa de la firma y generar una imagen (PNG) de la misma. La imagen se descarga en el dispositivo del usuario para que pueda ser incrustada en su gestor de correo electrónico de preferencia.
+Una vez ingresados los datos, se puede:
+
+- Usar **Guardar firma** para descargar una imagen PNG.
+- Usar **Copiar firma HTML** para pegar una versión con texto y enlaces directamente en un gestor de correo compatible.
 
 ### Mejoras recientes
 
@@ -16,3 +19,6 @@ Una vez que se han ingresado todos los datos, se hace clic en el botón "Guardar
 - Se agregó el campo de email, que se muestra en la firma con ícono.
 - Se agregaron íconos representativos para teléfono y email en la firma.
 - El logo se muestra en mejor calidad en la imagen descargada (mayor resolución y tamaño fijo).
+- Se agregó validación de tipo y tamaño para logos personalizados.
+- Se mejoró la adaptación a pantallas pequeñas y la accesibilidad del formulario.
+- Se eliminaron Bootstrap, jQuery y la copia obsoleta de html2canvas.
