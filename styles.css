@@ -134,17 +134,55 @@ h1 {
 
 .personalizacion {
   margin: 1.5rem 0 0;
-  padding: 1.25rem;
   border: 1px solid #d7e4e0;
   border-radius: 16px;
   background: #f8fbfa;
 }
 
-.personalizacion legend {
-  padding: 0 0.4rem;
+.personalizacion summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
   color: #18302b;
-  font-size: 1rem;
   font-weight: 750;
+  cursor: pointer;
+  list-style: none;
+}
+
+.personalizacion summary::-webkit-details-marker {
+  display: none;
+}
+
+.personalizacion summary::after {
+  content: "+";
+  color: #0f766e;
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.personalizacion[open] summary::after {
+  content: "−";
+}
+
+.personalizacion summary small {
+  margin-left: auto;
+  color: #70817c;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+.personalizacion summary:focus-visible {
+  border-radius: 15px;
+  outline: 3px solid rgb(13 148 136 / 22%);
+  outline-offset: 2px;
+}
+
+.personalizacionContenido {
+  padding: 1.25rem;
+  border-top: 1px solid #e2ece9;
 }
 
 .campoLabel {
@@ -401,6 +439,46 @@ button:disabled {
   color: #b42318;
 }
 
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  margin-top: 1rem;
+  color: #61726d;
+  font-size: 0.8rem;
+}
+
+.footer p {
+  margin: 0;
+}
+
+.footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #0f766e;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+.footer a:focus-visible {
+  border-radius: 4px;
+  outline: 3px solid rgb(13 148 136 / 22%);
+  outline-offset: 3px;
+}
+
+.footer svg {
+  width: 17px;
+  height: 17px;
+  fill: currentColor;
+}
+
 @media (max-width: 550px) {
   .pagina {
     justify-content: flex-start;
@@ -422,6 +500,16 @@ button:disabled {
 
   .visibilidadGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .personalizacion summary small {
+    display: none;
+  }
+
+  .footer {
+    flex-direction: column;
+    gap: 0.35rem;
+    text-align: center;
   }
 
   button {
