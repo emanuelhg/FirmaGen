@@ -1,30 +1,50 @@
-## FirmaGen
+# FirmaGen
 
-**Demo:** [https://emanuelhg.github.io/FirmaGen/](https://emanuelhg.github.io/FirmaGen/)
+Generador web de firmas para correo electrónico, desarrollado con HTML, CSS y JavaScript nativo.
 
-El código está realizado con **HTML**, **CSS** y **JavaScript nativo**. Es una página web que permite generar una firma personalizada para correo electrónico a partir de los datos ingresados en un formulario.
+**Demo:** [emanuelhg.github.io/FirmaGen](https://emanuelhg.github.io/FirmaGen/)
 
-Se utiliza la librería **html2canvas** para generar la imagen de la firma. El proyecto no requiere instalación, proceso de compilación ni otras dependencias.
+## Funcionalidades
 
-El código JavaScript actualiza la vista previa en tiempo real, valida el logo y los enlaces, permite personalizar el color y gestiona la descarga o copia de la firma.
+- Vista previa actualizada en tiempo real.
+- Descarga de la firma como imagen PNG.
+- Copia de la firma como HTML para pegarla en gestores de correo compatibles.
+- Logo personalizado en PNG, JPG o WebP de hasta 5 MB.
+- Color de acento configurable.
+- Opción para ocultar el logo, la empresa, la dirección, el teléfono o el email.
+- Enlaces opcionales para sitio web, LinkedIn, Instagram y WhatsApp.
+- Generación automática de las URL de LinkedIn e Instagram a partir del usuario.
+- Diseño adaptable a pantallas pequeñas y formulario accesible mediante teclado.
 
-Una vez ingresados los datos, se puede:
+## Uso
 
-- Usar **Guardar firma** para descargar una imagen PNG.
-- Usar **Copiar firma HTML** para pegar una versión con texto y enlaces directamente en un gestor de correo compatible.
+1. Completá los datos que querés mostrar.
+2. Abrí **Personalización** si necesitás cambiar el color, ocultar elementos o agregar redes sociales.
+3. Elegí **Guardar firma** para descargar un PNG o **Copiar firma HTML** para pegarla en tu correo.
 
-### Mejoras recientes
+Los enlaces de contacto y redes sociales son clicables únicamente en la firma HTML. En el PNG, los íconos son sólo visuales.
 
-- Permite subir un logo personalizado para la firma (campo de archivo en el formulario).
-- Se agregó el campo de email, que se muestra en la firma con ícono.
-- Se agregaron íconos representativos para teléfono y email en la firma.
-- El logo se muestra en mejor calidad en la imagen descargada (mayor resolución y tamaño fijo).
-- Se agregó validación de tipo y tamaño para logos personalizados.
-- Se mejoró la adaptación a pantallas pequeñas y la accesibilidad del formulario.
-- Se eliminaron Bootstrap, jQuery y la copia obsoleta de html2canvas.
-- Se agregó un selector de color y enlaces opcionales con iconos para sitio web, LinkedIn, Instagram y WhatsApp. Para LinkedIn e Instagram alcanza con ingresar el usuario; la URL se genera automáticamente.
-- Se puede elegir si la firma muestra logo, empresa o sector, dirección, teléfono y email.
+## Probar localmente
 
-Los enlaces de contacto y redes sociales son clicables únicamente en la firma copiada como HTML. En el archivo PNG se muestran sólo como elementos visuales.
+El proyecto no necesita instalación ni proceso de compilación. Serví la carpeta con cualquier servidor HTTP estático; por ejemplo, con Python:
 
-Los iconos sociales provienen de Font Awesome Free; consultar [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) para detalles de licencia.
+```bash
+python -m http.server 8765
+```
+
+Después abrí [http://localhost:8765](http://localhost:8765). Se necesita conexión a internet para cargar `html2canvas`, utilizado al generar el PNG.
+
+## Compatibilidad
+
+La firma HTML está preparada para pegarse en clientes como Gmail y Outlook. El resultado final puede variar según las reglas de formato de cada cliente de correo.
+
+## Estructura
+
+- `index.html`: formulario, vista previa y estructura de la página.
+- `styles.css`: estilos de la interfaz y de la firma.
+- `scripts.js`: validación, vista previa, descarga PNG y copia HTML.
+- `icons/`: íconos compatibles con clientes de correo.
+
+## Dependencias y licencias
+
+`html2canvas` se carga desde cdnjs; los íconos de redes sociales y sitio web derivan de Font Awesome Free. Consultá [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) para conocer sus licencias.
