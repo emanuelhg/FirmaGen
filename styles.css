@@ -303,9 +303,16 @@ h1 {
 }
 
 .redSocial {
-  display: inline-block;
-  margin: 0 7px 3px 0;
-  vertical-align: middle;
+  display: block;
+}
+
+.tablaRedes {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.celdaRedSocial {
+  padding: 0 7px 3px 0;
 }
 
 .redIcon {
