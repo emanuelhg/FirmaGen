@@ -2,7 +2,6 @@ const MAX_LOGO_BYTES = 5 * 1024 * 1024;
 const TIPOS_LOGO = ["image/png", "image/jpeg", "image/webp"];
 const LOGO_PREDETERMINADO = "logo_empresa.png";
 const BASE_PUBLICA = "https://emanuelhg.github.io/FirmaGen";
-const BASE_ICONOS_PUBLICOS = `${BASE_PUBLICA}/icons`;
 
 const firma = document.querySelector("#firmaCaptura");
 const formulario = document.querySelector("#firmaForm");
@@ -163,6 +162,18 @@ function leerComoDataUrl(archivo) {
   });
 }
 
+const iconosListos = Promise.all(
+  redes.map(async ({ icono }) => {
+    const respuesta = await fetch(`icons/${icono}.png`);
+
+    if (!respuesta.ok) {
+      throw new Error("No se pudieron cargar los iconos de redes sociales.");
+    }
+
+    return [icono, await leerComoDataUrl(await respuesta.blob())];
+  }),
+).then(Object.fromEntries);
+
 function esperarImagen(imagen) {
   if (imagen.complete && imagen.naturalWidth > 0) {
     return Promise.resolve();
@@ -279,7 +290,7 @@ async function guardarFirma() {
   }
 }
 
-function crearFirmaHtml() {
+function crearFirmaHtml(iconos) {
   const copia = firma.cloneNode(true);
   const logoOriginal = logoFirma.src.startsWith("data:") ? logoFirma.src : `${BASE_PUBLICA}/${LOGO_PREDETERMINADO}`;
   const acento = getComputedStyle(firma).getPropertyValue("--acento-firma").trim() || "#0f766e";
@@ -320,7 +331,7 @@ function crearFirmaHtml() {
     enlace.style.cssText = "display:inline-block;margin:0 7px 3px 0;text-decoration:none;vertical-align:middle;";
   });
   copia.querySelectorAll(".redIcon").forEach((icono) => {
-    icono.src = `${BASE_ICONOS_PUBLICOS}/${icono.dataset.icono}.png`;
+    icono.src = iconos[icono.dataset.icono];
     icono.style.cssText = "display:block;width:18px;height:18px;border:0;";
     icono.removeAttribute("data-icono");
   });
@@ -346,7 +357,7 @@ async function copiarFirma() {
       throw new Error("Este navegador no permite copiar firmas con formato.");
     }
 
-    const html = crearFirmaHtml();
+    const html = crearFirmaHtml(await iconosListos);
     const texto = firma.innerText;
     const contenido = new ClipboardItem({
       "text/html": new Blob([html], { type: "text/html" }),
