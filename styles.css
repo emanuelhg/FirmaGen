@@ -300,27 +300,22 @@ h1 {
 
 .redesFirma {
   padding-top: 5px !important;
+  white-space: nowrap;
 }
 
 .redSocial {
-  display: block;
-}
-
-.tablaRedes {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-.celdaRedSocial {
-  padding: 0 7px 3px 0;
+  display: inline-block;
+  margin-right: 7px;
+  vertical-align: middle;
 }
 
 .redIcon {
-  display: block;
+  display: inline-block;
   width: 18px;
   height: 18px;
   border: 0;
   object-fit: contain;
+  vertical-align: middle;
 }
 
 .botonBox {

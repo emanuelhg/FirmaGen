@@ -105,12 +105,7 @@ function normalizarInstagram(valor) {
 
 function actualizarRedes() {
   salidaSocial.replaceChildren();
-  const tabla = document.createElement("table");
-  const fila = tabla.insertRow();
   let cantidad = 0;
-
-  tabla.className = "tablaRedes";
-  tabla.setAttribute("role", "presentation");
 
   redes.forEach(({ id, nombre, icono, obtenerHref }) => {
     const entrada = document.querySelector(`#${id}`);
@@ -127,9 +122,7 @@ function actualizarRedes() {
 
     const enlace = document.createElement("a");
     const imagen = document.createElement("img");
-    const celda = fila.insertCell();
 
-    celda.className = "celdaRedSocial";
     enlace.className = "redSocial";
     enlace.href = href;
     enlace.target = "_blank";
@@ -142,13 +135,9 @@ function actualizarRedes() {
     imagen.height = 18;
     imagen.dataset.icono = icono;
     enlace.append(imagen);
-    celda.append(enlace);
+    salidaSocial.append(enlace);
     cantidad += 1;
   });
-
-  if (cantidad > 0) {
-    salidaSocial.append(tabla);
-  }
 
   filaSocial.hidden = cantidad === 0;
 }
@@ -337,20 +326,14 @@ function crearFirmaHtml(iconos) {
       `display:inline-block;margin-right:5px;color:${acento};font-family:Arial,Helvetica,sans-serif;line-height:1;`;
   });
   copia.querySelectorAll(".redSocial").forEach((enlace) => {
-    enlace.style.cssText = "display:block;text-decoration:none;";
-  });
-  copia.querySelector(".tablaRedes")?.setAttribute(
-    "style",
-    "border-collapse:collapse;border-spacing:0;margin:0;padding:0;",
-  );
-  copia.querySelectorAll(".celdaRedSocial").forEach((celda) => {
-    celda.style.cssText = "padding:0 7px 3px 0;vertical-align:middle;";
+    enlace.style.cssText = "display:inline-block;margin:0 7px 0 0;text-decoration:none;vertical-align:middle;";
   });
   copia.querySelectorAll(".redIcon").forEach((icono) => {
     icono.src = iconos[icono.dataset.icono];
-    icono.style.cssText = "display:block;width:18px;height:18px;border:0;";
+    icono.style.cssText = "display:inline-block;width:18px;height:18px;border:0;vertical-align:middle;";
     icono.removeAttribute("data-icono");
   });
+  copia.querySelector(".redesFirma").style.cssText = "padding-top:5px;white-space:nowrap;";
 
   copia.querySelectorAll("[id]").forEach((elemento) => elemento.removeAttribute("id"));
   copia.querySelectorAll("[class]").forEach((elemento) => elemento.removeAttribute("class"));
