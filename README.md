@@ -1,18 +1,50 @@
-## FirmaGen
+# FirmaGen
 
-**Demo:** [https://emanuelhg.github.io/FirmaGen/](https://emanuelhg.github.io/FirmaGen/)
+Generador web de firmas para correo electrónico, desarrollado con HTML, CSS y JavaScript nativo.
 
-El código se encuentra realizado con **HTML**, **CSS** y **JavaScript**. Es una página web que ofrece la funcionalidad de generar una firma para correo electrónico personalizada a partir de los datos que se ingresan en un formulario para luego volcarse en un archivo de imagen.
+**Demo:** [emanuelhg.github.io/FirmaGen](https://emanuelhg.github.io/FirmaGen/)
 
-Se hace uso de **Bootstrap** para el diseño y de la librería **html2canvas** para la generación de la imagen de la firma.
+## Funcionalidades
 
-El código JavaScript se encarga de manejar las acciones y eventos que ocurren. Concretamente, se encarga de actualizar la vista previa de la firma en tiempo real mientras se van ingresando los datos en el formulario. Para ello, se registran los eventos de input en cada uno de los campos del formulario y se actualiza la vista previa con los datos ingresados.
+- Vista previa actualizada en tiempo real.
+- Descarga de la firma como imagen PNG.
+- Copia de la firma como HTML para pegarla en gestores de correo compatibles.
+- Logo personalizado en PNG, JPG o WebP de hasta 5 MB.
+- Color de acento configurable.
+- Opción para ocultar el logo, la empresa, la dirección, el teléfono o el email.
+- Enlaces opcionales para sitio web, LinkedIn, Instagram y WhatsApp.
+- Generación automática de las URL de LinkedIn e Instagram a partir del usuario.
+- Diseño adaptable a pantallas pequeñas y formulario accesible mediante teclado.
 
-Una vez que se han ingresado todos los datos, se hace clic en el botón "Guardar firma" y se utiliza la librería html2canvas para capturar la vista previa de la firma y generar una imagen (PNG) de la misma. La imagen se descarga en el dispositivo del usuario para que pueda ser incrustada en su gestor de correo electrónico de preferencia.
+## Uso
 
-### Mejoras recientes
+1. Completá los datos que querés mostrar.
+2. Abrí **Personalización** si necesitás cambiar el color, ocultar elementos o agregar redes sociales.
+3. Elegí **Guardar firma** para descargar un PNG o **Copiar firma HTML** para pegarla en tu correo.
 
-- Permite subir un logo personalizado para la firma (campo de archivo en el formulario).
-- Se agregó el campo de email, que se muestra en la firma con ícono.
-- Se agregaron íconos representativos para teléfono y email en la firma.
-- El logo se muestra en mejor calidad en la imagen descargada (mayor resolución y tamaño fijo).
+Los enlaces de contacto y redes sociales son clicables únicamente en la firma HTML. En el PNG, los íconos son sólo visuales.
+
+## Probar localmente
+
+El proyecto no necesita instalación ni proceso de compilación. Serví la carpeta con cualquier servidor HTTP estático; por ejemplo, con Python:
+
+```bash
+python -m http.server 8765
+```
+
+Después abrí [http://localhost:8765](http://localhost:8765). Se necesita conexión a internet para cargar `html2canvas`, utilizado al generar el PNG.
+
+## Compatibilidad
+
+La firma HTML está preparada para pegarse en clientes como Gmail y Outlook. El resultado final puede variar según las reglas de formato de cada cliente de correo.
+
+## Estructura
+
+- `index.html`: formulario, vista previa y estructura de la página.
+- `styles.css`: estilos de la interfaz y de la firma.
+- `scripts.js`: validación, vista previa, descarga PNG y copia HTML.
+- `icons/`: íconos compatibles con clientes de correo.
+
+## Dependencias y licencias
+
+`html2canvas` se carga desde cdnjs; los íconos de redes sociales y sitio web derivan de Font Awesome Free. Consultá [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) para conocer sus licencias.

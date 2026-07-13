@@ -1,96 +1,143 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-
   <title>Generador de Firmas para Correo</title>
 </head>
 
-<body class="d-flex justify-content-center min-vh-100">
-  <div class="d-flex flex-column justify-content-center align-items-center">
-    <section class="container-fluid">
-      <h1 class="text-center text-success">Generador de Firmas</h1>
-      <p class="lead txtIntro">Ingrese los datos en el formulario, al presionar sobre el botón
-        para Guardar, la firma se descargará en formato imagen (PNG), la cual podrá ser incrustada en su gestor de
-        correo de preferencia:</p>
-      <div class="form-group">
-        <label for="nombreIn">Nombre y Apellido:</label>
-        <input type="text" autocomplete="off" class="form-control" id="nombreIn">
-      </div>
-      <div class="form-group">
-        <label for="sectorIn">Nombre de la Empresa y/o Sector:</label>
-        <input type="text" autocomplete="off" class="form-control" id="sectorIn">
-      </div>
-      <div class="form-group">
-        <label for="dirIn">Dirección:</label>
-        <input type="text" autocomplete="off" class="form-control" id="dirIn">
-      </div>
-      <div class="form-group">
-        <label for="telIn">Teléfono y/o Interno:</label>
-        <input type="text" autocomplete="off" class="form-control" id="telIn">
-      </div>
-      <div class="form-group">
-        <label for="emailIn">Email:</label>
-        <input type="email" autocomplete="off" class="form-control" id="emailIn">
-      </div>
-      <div class="form-group">
-        <label for="logoIn">Logo personalizado:</label>
-        <input type="file" accept="image/*" class="form-control" id="logoIn">
-      </div>
+<body>
+  <main class="pagina">
+    <section class="formulario" aria-labelledby="titulo">
+      <h1 id="titulo">Generador de Firmas</h1>
+      <p class="txtIntro">Completá el formulario y guardá la firma como imagen PNG o copiala con formato HTML para
+        pegarla directamente en tu gestor de correo.</p>
+      <form id="firmaForm">
+        <div class="form-group">
+          <label for="nombreIn">Nombre y Apellido:</label>
+          <input type="text" autocomplete="name" id="nombreIn">
+        </div>
+        <div class="form-group">
+          <label for="sectorIn">Nombre de la Empresa y/o Sector:</label>
+          <input type="text" autocomplete="organization" id="sectorIn">
+        </div>
+        <div class="form-group">
+          <label for="dirIn">Dirección:</label>
+          <input type="text" autocomplete="street-address" id="dirIn">
+        </div>
+        <div class="form-group">
+          <label for="telIn">Teléfono y/o Interno:</label>
+          <input type="tel" autocomplete="tel" id="telIn">
+        </div>
+        <div class="form-group">
+          <label for="emailIn">Email:</label>
+          <input type="email" autocomplete="email" id="emailIn">
+        </div>
+        <div class="form-group">
+          <label for="logoIn">Logo personalizado:</label>
+          <input type="file" accept="image/png,image/jpeg,image/webp" id="logoIn"
+            aria-describedby="logoAyuda">
+          <div id="logoAyuda" class="form-text">PNG, JPG o WebP, hasta 5 MB.</div>
+        </div>
+        <details class="personalizacion">
+          <summary>
+            <span>Personalización</span>
+            <small>Color, elementos y redes sociales</small>
+          </summary>
+          <div class="personalizacionContenido">
+          <label class="campoLabel" for="colorFirma">Color de la firma:</label>
+          <input class="colorPicker" type="color" id="colorFirma" value="#0f766e">
+          <p class="campoLabel elementosLabel">Elementos visibles:</p>
+          <div class="visibilidadGrid">
+            <label class="opcionVisible"><input type="checkbox" id="mostrarLogo" checked> Logo</label>
+            <label class="opcionVisible"><input type="checkbox" id="mostrarSector" checked> Empresa</label>
+            <label class="opcionVisible"><input type="checkbox" id="mostrarDireccion" checked> Dirección</label>
+            <label class="opcionVisible"><input type="checkbox" id="mostrarTelefono" checked> Teléfono</label>
+            <label class="opcionVisible"><input type="checkbox" id="mostrarEmail" checked> Email</label>
+          </div>
+          <div class="redesGrid">
+            <div class="form-group">
+              <label for="webIn">Sitio web:</label>
+              <input type="text" inputmode="url" autocomplete="url" id="webIn" placeholder="ejemplo.com"
+                aria-describedby="linksAyuda">
+            </div>
+            <div class="form-group">
+              <label for="linkedinIn">Usuario de LinkedIn:</label>
+              <input type="text" autocomplete="off" id="linkedinIn" placeholder="usuario"
+                aria-describedby="linksAyuda">
+            </div>
+            <div class="form-group">
+              <label for="instagramIn">Usuario de Instagram:</label>
+              <input type="text" autocomplete="off" id="instagramIn" placeholder="@usuario"
+                aria-describedby="linksAyuda">
+            </div>
+            <div class="form-group">
+              <label for="whatsappIn">WhatsApp:</label>
+              <input type="tel" inputmode="tel" id="whatsappIn" placeholder="5493511234567"
+                aria-describedby="linksAyuda">
+            </div>
+          </div>
+            <p id="linksAyuda" class="notaLinks">LinkedIn e Instagram: ingresá sólo el usuario.
+              <strong>Los enlaces funcionan en la firma HTML</strong>; en el PNG, los íconos son sólo visuales.</p>
+          </div>
+        </details>
+      </form>
     </section>
-    <section class="firmaBox">
-      <table style="table-layout: fixed; width: 200px" id="firmaCaptura">
+    <section class="firmaBox" aria-label="Vista previa de la firma">
+      <div class="previewHeader">
+        <h2>Vista previa</h2>
+        <p>Así se verá tu firma al guardarla o copiarla.</p>
+      </div>
+      <table id="firmaCaptura">
         <colgroup>
-          <col class="colLogo" style="width: 150px;">
-          <col class="colFirma" style="width: 400px;">
+          <col class="colLogo">
+          <col class="colFirma">
         </colgroup>
-        <thead>
+        <tbody>
           <tr>
-            <th colspan="2" style="display:none"></th>
+            <td rowspan="5" class="logoBox"><img id="logoFirma" src="logo_empresa.png" alt="Logo de la empresa"></td>
+            <td id="nombreOut" class="nombreFirma">Nombre y Apellido</td>
           </tr>
-        </thead>
-        <tbody style="font-size: 14px;">
-          <tr>
-            <td rowspan="6" class="logoBox"><img id="logoFirma" src="logo_empresa.png" width="70%" alt="Logo Empresa"></td>
-            <td id="nombreOut" style="font-weight: bold;">Nombre y Apellido</td>
-          </tr>
-          <tr>
+          <tr id="sectorRow">
             <td id="sectorOut">Empresa o Sector</td>
           </tr>
-          <tr>
-            <td id="dirOut"><span class="icono-dir" style="vertical-align:middle;"></span><span id="dirText">Dirección (CP). Localidad - Provincia.</span></td>
+          <tr id="direccionRow">
+            <td id="dirOut"><span id="dirText">Dirección (CP). Localidad - Provincia.</span></td>
           </tr>
-          <tr>
-            <td id="telOut"><span class="icono-tel" style="margin-right:5px;vertical-align:middle;">📞</span><span id="telText">(Caract) Número de Tel + Interno</span></td>
+          <tr id="telefonoRow">
+            <td id="telOut"><span class="icono" aria-hidden="true">☎︎</span><a id="telText">(Caract) Número de Tel + Interno</a></td>
           </tr>
-          <tr>
-            <td id="emailOut"><span class="icono-mail" style="margin-right:5px;vertical-align:middle;">✉️</span><span id="emailText">correo@ejemplo.com</span></td>
+          <tr id="emailRow">
+            <td id="emailOut">
+              <div id="emailContent"><span class="icono" aria-hidden="true">✉︎</span><a id="emailText">correo@ejemplo.com</a></div>
+              <div id="socialRow" hidden><div id="socialOut" class="redesFirma"></div></div>
+            </td>
           </tr>
         </tbody>
       </table>
     </section>
     <div class="botonBox">
-      <button id="btnCapturar" class="btn btn-success">Guardar firma</button>
+      <button type="button" id="btnCapturar">Guardar firma</button>
+      <button type="button" id="btnCopiar" class="secundario">Copiar firma HTML</button>
     </div>
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
-  </script>
-  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
-    crossorigin="anonymous"></script>
+    <p id="estado" class="estado" role="status" aria-live="polite"></p>
+    <footer class="footer">
+      <p><strong>FirmaGen</strong> · Generador de firmas para correo</p>
+      <a href="https://github.com/emanuelhg/FirmaGen" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 .7a11.3 11.3 0 0 0-3.6 22c.6.1.8-.2.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.7-1.3-1.7-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.6.1-3.1 0 0 1-.3 3.1 1.2a10.7 10.7 0 0 1 5.7 0C15.9 4.4 17 4.8 17 4.8c.6 1.5.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.8 5.5-5.5 5.8.4.4.8 1.1.8 2.2v3.2c0 .4.2.7.8.6A11.3 11.3 0 0 0 12 .7Z" />
+        </svg>
+        Ver en GitHub
+      </a>
+    </footer>
+  </main>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
     integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="scripts.js"></script>
+  <script src="scripts.js?v=20260713-8"></script>
 </body>
 
 </html>
