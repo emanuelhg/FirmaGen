@@ -205,9 +205,9 @@ function crearFirmaHtml() {
   copia.querySelectorAll("a").forEach((enlace) => {
     enlace.style.cssText = "color:#212529;text-decoration:none;";
   });
-  copia.querySelectorAll("svg").forEach((icono) => {
-    icono.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-    icono.style.cssText = "width:14px;height:14px;margin-right:5px;vertical-align:-2px;fill:#212529;";
+  copia.querySelectorAll(".icono").forEach((icono) => {
+    icono.style.cssText =
+      "display:inline-block;margin-right:5px;color:#212529;font-family:Arial,Helvetica,sans-serif;line-height:1;";
   });
 
   copia.querySelectorAll("[id]").forEach((elemento) => elemento.removeAttribute("id"));
