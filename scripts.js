@@ -48,8 +48,8 @@ actualizarEnlace("emailIn", "emailText", "correo@ejemplo.com", "mailto");
 
 const redes = [
   { id: "webIn", nombre: "Sitio web", insignia: "www", obtenerHref: normalizarUrl },
-  { id: "linkedinIn", nombre: "LinkedIn", insignia: "in", obtenerHref: normalizarUrl },
-  { id: "instagramIn", nombre: "Instagram", insignia: "ig", obtenerHref: normalizarUrl },
+  { id: "linkedinIn", nombre: "LinkedIn", insignia: "in", obtenerHref: normalizarLinkedIn },
+  { id: "instagramIn", nombre: "Instagram", insignia: "ig", obtenerHref: normalizarInstagram },
   { id: "whatsappIn", nombre: "WhatsApp", insignia: "wa", obtenerHref: normalizarWhatsApp },
 ];
 const filaSocial = document.querySelector("#socialRow");
@@ -73,6 +73,34 @@ function normalizarUrl(valor) {
 function normalizarWhatsApp(valor) {
   const numero = valor.replace(/\D/g, "");
   return numero.length >= 8 ? `https://wa.me/${numero}` : null;
+}
+
+function normalizarUsuarioSocial(valor, dominio, ruta, patron) {
+  if (!valor) {
+    return null;
+  }
+
+  if (/^https?:\/\//i.test(valor) || valor.toLowerCase().includes(`${dominio}/`)) {
+    const href = normalizarUrl(valor);
+
+    if (!href) {
+      return null;
+    }
+
+    const hostname = new URL(href).hostname.toLowerCase();
+    return hostname === dominio || hostname.endsWith(`.${dominio}`) ? href : null;
+  }
+
+  const usuario = valor.replace(/^@/, "").replace(/\/+$/, "");
+  return patron.test(usuario) ? `https://www.${dominio}/${ruta}${encodeURIComponent(usuario)}/` : null;
+}
+
+function normalizarLinkedIn(valor) {
+  return normalizarUsuarioSocial(valor, "linkedin.com", "in/", /^[a-zA-Z0-9._-]+$/);
+}
+
+function normalizarInstagram(valor) {
+  return normalizarUsuarioSocial(valor, "instagram.com", "", /^[a-zA-Z0-9._]+$/);
 }
 
 function actualizarRedes() {
