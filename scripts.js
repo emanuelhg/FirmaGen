@@ -1,6 +1,8 @@
 const MAX_LOGO_BYTES = 5 * 1024 * 1024;
 const TIPOS_LOGO = ["image/png", "image/jpeg", "image/webp"];
 const LOGO_PREDETERMINADO = "logo_empresa.png";
+const BASE_PUBLICA = "https://emanuelhg.github.io/FirmaGen";
+const BASE_ICONOS_PUBLICOS = `${BASE_PUBLICA}/icons`;
 
 const firma = document.querySelector("#firmaCaptura");
 const formulario = document.querySelector("#firmaForm");
@@ -47,10 +49,10 @@ actualizarEnlace("telIn", "telText", "(Caract) Número de Tel + Interno", "tel")
 actualizarEnlace("emailIn", "emailText", "correo@ejemplo.com", "mailto");
 
 const redes = [
-  { id: "webIn", nombre: "Sitio web", insignia: "www", obtenerHref: normalizarUrl },
-  { id: "linkedinIn", nombre: "LinkedIn", insignia: "in", obtenerHref: normalizarLinkedIn },
-  { id: "instagramIn", nombre: "Instagram", insignia: "ig", obtenerHref: normalizarInstagram },
-  { id: "whatsappIn", nombre: "WhatsApp", insignia: "wa", obtenerHref: normalizarWhatsApp },
+  { id: "webIn", nombre: "Sitio web", icono: "website", obtenerHref: normalizarUrl },
+  { id: "linkedinIn", nombre: "LinkedIn", icono: "linkedin", obtenerHref: normalizarLinkedIn },
+  { id: "instagramIn", nombre: "Instagram", icono: "instagram", obtenerHref: normalizarInstagram },
+  { id: "whatsappIn", nombre: "WhatsApp", icono: "whatsapp", obtenerHref: normalizarWhatsApp },
 ];
 const filaSocial = document.querySelector("#socialRow");
 const salidaSocial = document.querySelector("#socialOut");
@@ -107,7 +109,7 @@ function actualizarRedes() {
   salidaSocial.replaceChildren();
   let cantidad = 0;
 
-  redes.forEach(({ id, nombre, insignia, obtenerHref }) => {
+  redes.forEach(({ id, nombre, icono, obtenerHref }) => {
     const entrada = document.querySelector(`#${id}`);
     const valor = entrada.value.trim();
     const href = obtenerHref(valor);
@@ -121,16 +123,20 @@ function actualizarRedes() {
     }
 
     const enlace = document.createElement("a");
-    const badge = document.createElement("span");
+    const imagen = document.createElement("img");
 
     enlace.className = "redSocial";
     enlace.href = href;
     enlace.target = "_blank";
     enlace.rel = "noopener noreferrer";
     enlace.setAttribute("aria-label", nombre);
-    badge.className = "redBadge";
-    badge.textContent = insignia;
-    enlace.append(badge);
+    imagen.className = "redIcon";
+    imagen.src = `icons/${icono}.png`;
+    imagen.alt = "";
+    imagen.width = 18;
+    imagen.height = 18;
+    imagen.dataset.icono = icono;
+    enlace.append(imagen);
     salidaSocial.append(enlace);
     cantidad += 1;
   });
@@ -275,7 +281,7 @@ async function guardarFirma() {
 
 function crearFirmaHtml() {
   const copia = firma.cloneNode(true);
-  const logoOriginal = logoFirma.src;
+  const logoOriginal = logoFirma.src.startsWith("data:") ? logoFirma.src : `${BASE_PUBLICA}/${LOGO_PREDETERMINADO}`;
   const acento = getComputedStyle(firma).getPropertyValue("--acento-firma").trim() || "#0f766e";
 
   if (filaSocial.hidden) {
@@ -311,11 +317,12 @@ function crearFirmaHtml() {
       `display:inline-block;margin-right:5px;color:${acento};font-family:Arial,Helvetica,sans-serif;line-height:1;`;
   });
   copia.querySelectorAll(".redSocial").forEach((enlace) => {
-    enlace.style.cssText = "display:inline-block;margin:0 6px 3px 0;text-decoration:none;";
+    enlace.style.cssText = "display:inline-block;margin:0 7px 3px 0;text-decoration:none;vertical-align:middle;";
   });
-  copia.querySelectorAll(".redBadge").forEach((badge) => {
-    badge.style.cssText =
-      `display:inline-block;min-width:24px;padding:3px 5px;border-radius:5px;color:#fff;background:${acento};font-size:10px;font-weight:700;line-height:1;text-align:center;`;
+  copia.querySelectorAll(".redIcon").forEach((icono) => {
+    icono.src = `${BASE_ICONOS_PUBLICOS}/${icono.dataset.icono}.png`;
+    icono.style.cssText = "display:block;width:18px;height:18px;border:0;";
+    icono.removeAttribute("data-icono");
   });
 
   copia.querySelectorAll("[id]").forEach((elemento) => elemento.removeAttribute("id"));

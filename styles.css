@@ -304,20 +304,16 @@ h1 {
 
 .redSocial {
   display: inline-block;
-  margin: 0 6px 3px 0;
+  margin: 0 7px 3px 0;
+  vertical-align: middle;
 }
 
-.redBadge {
-  display: inline-block;
-  min-width: 24px;
-  padding: 3px 5px;
-  border-radius: 5px;
-  color: #fff;
-  background: var(--acento-firma);
-  font-size: 10px;
-  font-weight: 700;
-  line-height: 1;
-  text-align: center;
+.redIcon {
+  display: block;
+  width: 18px;
+  height: 18px;
+  border: 0;
+  object-fit: contain;
 }
 
 .botonBox {
