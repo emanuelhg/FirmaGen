@@ -55,6 +55,27 @@ const redes = [
 ];
 const filaSocial = document.querySelector("#socialRow");
 const salidaSocial = document.querySelector("#socialOut");
+const mostrarLogo = document.querySelector("#mostrarLogo");
+const mostrarEmail = document.querySelector("#mostrarEmail");
+const filaEmail = document.querySelector("#emailRow");
+const elementosVisibles = [
+  ["mostrarSector", "#sectorRow"],
+  ["mostrarDireccion", "#direccionRow"],
+  ["mostrarTelefono", "#telefonoRow"],
+  ["mostrarEmail", "#emailContent"],
+];
+
+function actualizarFilaEmail() {
+  filaEmail.hidden = !mostrarEmail.checked && filaSocial.hidden;
+}
+
+function actualizarVisibilidad() {
+  firma.classList.toggle("sinLogo", !mostrarLogo.checked);
+  elementosVisibles.forEach(([controlId, selector]) => {
+    document.querySelector(selector).hidden = !document.querySelector(`#${controlId}`).checked;
+  });
+  actualizarFilaEmail();
+}
 
 function normalizarUrl(valor) {
   if (!valor) {
@@ -140,10 +161,15 @@ function actualizarRedes() {
   });
 
   filaSocial.hidden = cantidad === 0;
+  actualizarFilaEmail();
 }
 
 redes.forEach(({ id }) => document.querySelector(`#${id}`).addEventListener("input", actualizarRedes));
+document
+  .querySelectorAll("#mostrarLogo, #mostrarSector, #mostrarDireccion, #mostrarTelefono, #mostrarEmail")
+  .forEach((control) => control.addEventListener("change", actualizarVisibilidad));
 actualizarRedes();
+actualizarVisibilidad();
 
 document.querySelectorAll('input[name="paleta"]').forEach((opcion) => {
   opcion.addEventListener("change", () => {
@@ -333,7 +359,17 @@ function crearFirmaHtml(iconos) {
     icono.style.cssText = "display:inline-block;width:18px;height:18px;border:0;vertical-align:middle;";
     icono.removeAttribute("data-icono");
   });
-  copia.querySelector(".redesFirma").style.cssText = "padding-top:5px;white-space:nowrap;";
+  if (copia.querySelector(".redesFirma")) {
+    copia.querySelector(".redesFirma").style.cssText = "padding-top:5px;white-space:nowrap;";
+  }
+
+  if (!mostrarLogo.checked) {
+    copia.querySelector(".logoBox").remove();
+    copia.querySelector(".colLogo").remove();
+    copia.querySelector(".colFirma").style.width = "550px";
+  }
+
+  copia.querySelectorAll("[hidden]").forEach((elemento) => elemento.remove());
 
   copia.querySelectorAll("[id]").forEach((elemento) => elemento.removeAttribute("id"));
   copia.querySelectorAll("[class]").forEach((elemento) => elemento.removeAttribute("class"));

@@ -67,6 +67,14 @@
               Bordó
             </label>
           </div>
+          <p class="campoLabel elementosLabel">Elementos visibles:</p>
+          <div class="visibilidadGrid">
+            <label class="opcionVisible"><input type="checkbox" id="mostrarLogo" checked> Logo</label>
+            <label class="opcionVisible"><input type="checkbox" id="mostrarSector" checked> Empresa o sector</label>
+            <label class="opcionVisible"><input type="checkbox" id="mostrarDireccion" checked> Dirección</label>
+            <label class="opcionVisible"><input type="checkbox" id="mostrarTelefono" checked> Teléfono</label>
+            <label class="opcionVisible"><input type="checkbox" id="mostrarEmail" checked> Email</label>
+          </div>
           <div class="redesGrid">
             <div class="form-group">
               <label for="webIn">Sitio web:</label>
@@ -110,18 +118,18 @@
             <td rowspan="5" class="logoBox"><img id="logoFirma" src="logo_empresa.png" alt="Logo de la empresa"></td>
             <td id="nombreOut" class="nombreFirma">Nombre y Apellido</td>
           </tr>
-          <tr>
+          <tr id="sectorRow">
             <td id="sectorOut">Empresa o Sector</td>
           </tr>
-          <tr>
+          <tr id="direccionRow">
             <td id="dirOut"><span id="dirText">Dirección (CP). Localidad - Provincia.</span></td>
           </tr>
-          <tr>
+          <tr id="telefonoRow">
             <td id="telOut"><span class="icono" aria-hidden="true">☎︎</span><a id="telText">(Caract) Número de Tel + Interno</a></td>
           </tr>
-          <tr>
+          <tr id="emailRow">
             <td id="emailOut">
-              <span class="icono" aria-hidden="true">✉︎</span><a id="emailText">correo@ejemplo.com</a>
+              <div id="emailContent"><span class="icono" aria-hidden="true">✉︎</span><a id="emailText">correo@ejemplo.com</a></div>
               <div id="socialRow" hidden><div id="socialOut" class="redesFirma"></div></div>
             </td>
           </tr>
@@ -137,7 +145,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
     integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="scripts.js?v=20260713-5"></script>
+  <script src="scripts.js?v=20260713-6"></script>
 </body>
 
 </html>

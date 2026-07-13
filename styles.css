@@ -202,10 +202,59 @@ h1 {
   box-shadow: 0 0 0 1px rgb(15 23 42 / 15%);
 }
 
+.elementosLabel {
+  margin-top: 1rem;
+}
+
+.visibilidadGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.opcionVisible {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid #d7e4e0;
+  border-radius: 10px;
+  background: #fff;
+  color: #27443d;
+  font-size: 0.82rem;
+  cursor: pointer;
+}
+
+.opcionVisible:has(input:checked) {
+  border-color: #0f766e;
+  background: #eef8f5;
+}
+
+.opcionVisible input {
+  accent-color: #0f766e;
+}
+
 .redesGrid {
+  margin-top: 1rem;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0 0.75rem;
+}
+
+#firmaCaptura.sinLogo .colLogo {
+  width: 0;
+}
+
+#firmaCaptura.sinLogo .colFirma {
+  width: 550px;
+}
+
+#firmaCaptura.sinLogo .logoBox {
+  padding: 0 !important;
+}
+
+#firmaCaptura.sinLogo .logoBox img {
+  display: none;
 }
 
 .notaLinks {
