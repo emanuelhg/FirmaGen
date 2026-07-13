@@ -55,7 +55,6 @@ const redes = [
 ];
 const filaSocial = document.querySelector("#socialRow");
 const salidaSocial = document.querySelector("#socialOut");
-const cajaLogo = document.querySelector(".logoBox");
 
 function normalizarUrl(valor) {
   if (!valor) {
@@ -152,7 +151,6 @@ function actualizarRedes() {
   }
 
   filaSocial.hidden = cantidad === 0;
-  cajaLogo.rowSpan = cantidad === 0 ? 5 : 6;
 }
 
 redes.forEach(({ id }) => document.querySelector(`#${id}`).addEventListener("input", actualizarRedes));
