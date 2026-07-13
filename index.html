@@ -42,6 +42,56 @@
             aria-describedby="logoAyuda">
           <div id="logoAyuda" class="form-text">PNG, JPG o WebP, hasta 5 MB.</div>
         </div>
+        <fieldset class="personalizacion">
+          <legend>Personalización</legend>
+          <p class="campoLabel">Color de la firma:</p>
+          <div class="paletas">
+            <label class="paleta">
+              <input type="radio" name="paleta" value="#0f766e" checked>
+              <span class="muestraColor" style="--color-paleta: #0f766e"></span>
+              Verde
+            </label>
+            <label class="paleta">
+              <input type="radio" name="paleta" value="#1d4ed8">
+              <span class="muestraColor" style="--color-paleta: #1d4ed8"></span>
+              Azul
+            </label>
+            <label class="paleta">
+              <input type="radio" name="paleta" value="#475569">
+              <span class="muestraColor" style="--color-paleta: #475569"></span>
+              Gris
+            </label>
+            <label class="paleta">
+              <input type="radio" name="paleta" value="#9f1239">
+              <span class="muestraColor" style="--color-paleta: #9f1239"></span>
+              Bordó
+            </label>
+          </div>
+          <div class="redesGrid">
+            <div class="form-group">
+              <label for="webIn">Sitio web:</label>
+              <input type="text" inputmode="url" autocomplete="url" id="webIn" placeholder="ejemplo.com"
+                aria-describedby="linksAyuda">
+            </div>
+            <div class="form-group">
+              <label for="linkedinIn">LinkedIn:</label>
+              <input type="text" inputmode="url" id="linkedinIn" placeholder="linkedin.com/in/usuario"
+                aria-describedby="linksAyuda">
+            </div>
+            <div class="form-group">
+              <label for="instagramIn">Instagram:</label>
+              <input type="text" inputmode="url" id="instagramIn" placeholder="instagram.com/usuario"
+                aria-describedby="linksAyuda">
+            </div>
+            <div class="form-group">
+              <label for="whatsappIn">WhatsApp:</label>
+              <input type="tel" inputmode="tel" id="whatsappIn" placeholder="5493511234567"
+                aria-describedby="linksAyuda">
+            </div>
+          </div>
+          <p id="linksAyuda" class="notaLinks"><strong>Links clicables:</strong> funcionan al usar “Copiar firma
+            HTML”. En el PNG los iconos son únicamente visuales.</p>
+        </fieldset>
       </form>
     </section>
     <section class="firmaBox" aria-label="Vista previa de la firma">
@@ -70,6 +120,9 @@
           </tr>
           <tr>
             <td id="emailOut"><span class="icono" aria-hidden="true">✉︎</span><a id="emailText">correo@ejemplo.com</a></td>
+          </tr>
+          <tr id="socialRow" hidden>
+            <td id="socialOut" class="redesFirma"></td>
           </tr>
         </tbody>
       </table>

@@ -46,6 +46,80 @@ actualizarTexto("dirIn", "dirText", "Dirección (CP). Localidad - Provincia.");
 actualizarEnlace("telIn", "telText", "(Caract) Número de Tel + Interno", "tel");
 actualizarEnlace("emailIn", "emailText", "correo@ejemplo.com", "mailto");
 
+const redes = [
+  { id: "webIn", nombre: "Sitio web", insignia: "www", obtenerHref: normalizarUrl },
+  { id: "linkedinIn", nombre: "LinkedIn", insignia: "in", obtenerHref: normalizarUrl },
+  { id: "instagramIn", nombre: "Instagram", insignia: "ig", obtenerHref: normalizarUrl },
+  { id: "whatsappIn", nombre: "WhatsApp", insignia: "wa", obtenerHref: normalizarWhatsApp },
+];
+const filaSocial = document.querySelector("#socialRow");
+const salidaSocial = document.querySelector("#socialOut");
+const cajaLogo = document.querySelector(".logoBox");
+
+function normalizarUrl(valor) {
+  if (!valor) {
+    return null;
+  }
+
+  try {
+    const url = new URL(/^https?:\/\//i.test(valor) ? valor : `https://${valor}`);
+    const dominioValido = url.hostname.includes(".") && !url.hostname.includes("%");
+    return ["http:", "https:"].includes(url.protocol) && dominioValido ? url.href : null;
+  } catch {
+    return null;
+  }
+}
+
+function normalizarWhatsApp(valor) {
+  const numero = valor.replace(/\D/g, "");
+  return numero.length >= 8 ? `https://wa.me/${numero}` : null;
+}
+
+function actualizarRedes() {
+  salidaSocial.replaceChildren();
+  let cantidad = 0;
+
+  redes.forEach(({ id, nombre, insignia, obtenerHref }) => {
+    const entrada = document.querySelector(`#${id}`);
+    const valor = entrada.value.trim();
+    const href = obtenerHref(valor);
+    const invalido = Boolean(valor && !href);
+
+    entrada.setCustomValidity(invalido ? `Ingresá un enlace o número válido para ${nombre}.` : "");
+    entrada.setAttribute("aria-invalid", String(invalido));
+
+    if (!href) {
+      return;
+    }
+
+    const enlace = document.createElement("a");
+    const badge = document.createElement("span");
+
+    enlace.className = "redSocial";
+    enlace.href = href;
+    enlace.target = "_blank";
+    enlace.rel = "noopener noreferrer";
+    enlace.setAttribute("aria-label", nombre);
+    badge.className = "redBadge";
+    badge.textContent = insignia;
+    enlace.append(badge);
+    salidaSocial.append(enlace);
+    cantidad += 1;
+  });
+
+  filaSocial.hidden = cantidad === 0;
+  cajaLogo.rowSpan = cantidad === 0 ? 5 : 6;
+}
+
+redes.forEach(({ id }) => document.querySelector(`#${id}`).addEventListener("input", actualizarRedes));
+actualizarRedes();
+
+document.querySelectorAll('input[name="paleta"]').forEach((opcion) => {
+  opcion.addEventListener("change", () => {
+    firma.style.setProperty("--acento-firma", opcion.value);
+  });
+});
+
 function leerComoDataUrl(archivo) {
   return new Promise((resolve, reject) => {
     const lector = new FileReader();
@@ -105,13 +179,7 @@ logoEntrada.addEventListener("change", () => {
 formulario.addEventListener("submit", (evento) => evento.preventDefault());
 
 function validarFormulario() {
-  const email = document.querySelector("#emailIn");
-
-  if (email.value && !formulario.reportValidity()) {
-    return false;
-  }
-
-  return true;
+  return formulario.reportValidity();
 }
 
 function nombreArchivoSeguro() {
@@ -180,6 +248,11 @@ async function guardarFirma() {
 function crearFirmaHtml() {
   const copia = firma.cloneNode(true);
   const logoOriginal = logoFirma.src;
+  const acento = getComputedStyle(firma).getPropertyValue("--acento-firma").trim() || "#0f766e";
+
+  if (filaSocial.hidden) {
+    copia.querySelector("#socialRow").remove();
+  }
 
   copia.removeAttribute("id");
   copia.setAttribute("role", "presentation");
@@ -201,13 +274,20 @@ function crearFirmaHtml() {
   logo.height = 120;
   logo.style.cssText = "display:block;width:120px;height:120px;margin:0 auto;object-fit:contain;";
 
-  copia.querySelector(".nombreFirma").style.fontWeight = "700";
+  copia.querySelector(".nombreFirma").style.cssText = `font-weight:700;color:${acento};`;
   copia.querySelectorAll("a").forEach((enlace) => {
     enlace.style.cssText = "color:#212529;text-decoration:none;";
   });
   copia.querySelectorAll(".icono").forEach((icono) => {
     icono.style.cssText =
-      "display:inline-block;margin-right:5px;color:#212529;font-family:Arial,Helvetica,sans-serif;line-height:1;";
+      `display:inline-block;margin-right:5px;color:${acento};font-family:Arial,Helvetica,sans-serif;line-height:1;`;
+  });
+  copia.querySelectorAll(".redSocial").forEach((enlace) => {
+    enlace.style.cssText = "display:inline-block;margin:0 6px 3px 0;text-decoration:none;";
+  });
+  copia.querySelectorAll(".redBadge").forEach((badge) => {
+    badge.style.cssText =
+      `display:inline-block;min-width:24px;padding:3px 5px;border-radius:5px;color:#fff;background:${acento};font-size:10px;font-weight:700;line-height:1;text-align:center;`;
   });
 
   copia.querySelectorAll("[id]").forEach((elemento) => elemento.removeAttribute("id"));
