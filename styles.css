@@ -170,21 +170,24 @@ h1 {
 }
 
 .visibilidadGrid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.4rem;
 }
 
 .opcionVisible {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 0.4rem;
-  padding: 0.45rem 0.65rem;
+  min-width: 0;
+  padding: 0.45rem 0.35rem;
   border: 1px solid #d7e4e0;
   border-radius: 10px;
   background: #fff;
   color: #27443d;
   font-size: 0.82rem;
+  white-space: nowrap;
   cursor: pointer;
 }
 
@@ -413,6 +416,10 @@ button:disabled {
   }
 
   .redesGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .visibilidadGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
